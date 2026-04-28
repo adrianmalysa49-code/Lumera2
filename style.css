@@ -524,3 +524,7 @@ textarea.inp{resize:none;min-height:90px;line-height:1.6}
   .lsec { padding: 72px 10%; }
   .lnav { padding: 0 10%; }
 }
+
+/* footer links */
+.footer-link{cursor:pointer;color:var(--t3);transition:color .2s}
+.footer-link:hover{color:var(--t1)}
