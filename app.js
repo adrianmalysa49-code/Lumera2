@@ -238,7 +238,9 @@ function P(name){
   CP = name;
   var noNav = ['landing','login','signup','onboarding','paywall'];
   var noBN  = ['landing','login','signup','onboarding','paywall','course-detail'];
-  document.getElementById('BN').style.display = noBN.indexOf(name) >= 0 ? 'none' : 'flex';
+  var hasSidebar = noBN.indexOf(name) < 0;
+  document.getElementById('BN').style.display = hasSidebar ? 'flex' : 'none';
+  document.getElementById('app').classList.toggle('has-sidebar', hasSidebar);
   document.getElementById('TB').style.display = (name === 'landing' || name === 'onboarding') ? 'none' : 'flex';
   if(noNav.indexOf(name) < 0) UTB(name);
   if(noBN.indexOf(name) < 0) UBN(name);
