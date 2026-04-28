@@ -234,3 +234,293 @@ textarea.inp{resize:none;min-height:90px;line-height:1.6}
 .pw-plan{border-radius:18px;overflow:hidden}
 .pw-feat{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t2);margin-bottom:8px}
 .pw-feat:last-child{margin-bottom:0}
+/* ═══════════════════════════════════════════════════════════
+   DESKTOP RESPONSIVE  ≥ 900px
+═══════════════════════════════════════════════════════════ */
+@media (min-width: 900px) {
+
+  /* ── Scrollbar wider on desktop ── */
+  ::-webkit-scrollbar { width: 4px; }
+
+  /* ── Topbar ── */
+  .tb { padding: 0 36px; height: 60px; }
+  :root { --tb: 60px; }
+
+  /* ═══════════════════════════════════════════
+     SIDEBAR NAVIGATION
+  ═══════════════════════════════════════════ */
+  .has-sidebar .bnav {
+    position: fixed;
+    top: var(--tb);
+    left: 0;
+    bottom: 0;
+    width: 224px;
+    flex-direction: column;
+    height: auto;
+    border-top: none;
+    border-right: 1px solid var(--line2);
+    border-bottom: none;
+    padding: 24px 12px 32px;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 3px;
+    overflow-y: auto;
+    background: rgba(7,8,18,.96);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+  }
+
+  /* Sidebar divider at top */
+  .has-sidebar .bnav::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--line2);
+    margin: 0 4px 14px;
+  }
+
+  .has-sidebar .pages {
+    margin-left: 224px;
+  }
+
+  /* Nav tab — horizontal pill on desktop */
+  .ntab {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 13px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    width: 100%;
+    flex: none;
+  }
+  .ntab:hover:not(.on) { background: rgba(255,255,255,.035); }
+  .ntab.on {
+    background: rgba(85,112,245,.12);
+    border-radius: 11px;
+  }
+  .ntab.on .ni { filter: drop-shadow(0 0 6px rgba(123,147,247,.65)); }
+  .ni  { font-size: 17px; }
+  .nl  { font-size: 13px; font-weight: 600; letter-spacing: -.01em; }
+
+  /* ═══════════════════════════════════════════
+     CONTENT MAX-WIDTH  (all app pages)
+  ═══════════════════════════════════════════ */
+  #dashC     { max-width: 980px; margin: 0 auto; padding: 40px 52px; }
+  #coursesC  { max-width: 980px; margin: 0 auto; padding: 40px 52px 0; }
+  #progressC { max-width: 980px; margin: 0 auto; padding: 40px 52px 0; }
+  #adminC    { max-width: 980px; margin: 0 auto; padding: 40px 52px 0; }
+  #cdC       { max-width: 980px; margin: 0 auto; }
+  #paywallC  { max-width: 700px;  margin: 0 auto; padding: 40px 52px 80px; }
+  #lessonC   { max-width: 880px;  margin: 0 auto; }
+
+  /* Course detail inner padding */
+  #cdC > div { padding-left: 52px; padding-right: 52px; }
+  #cdC > div[style*="margin:16px"] { margin-left: 52px !important; margin-right: 52px !important; }
+  #cdC > div[style*="padding:20px 20px 0"] { padding-left: 52px; padding-right: 52px; }
+
+  /* ═══════════════════════════════════════════
+     DASHBOARD — 4-col stats, wider layout
+  ═══════════════════════════════════════════ */
+  .dstat { padding: 22px; }
+  .dstat-val { font-size: 30px; }
+
+  /* 4-column stats on desktop (override 2-col grid) */
+  #dashC > div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: repeat(4,1fr) !important;
+  }
+
+  .dash-hero { padding: 28px 32px; }
+  .streak-card { padding: 24px 28px; }
+
+  /* ═══════════════════════════════════════════
+     COURSES PAGE — 3-column grid
+  ═══════════════════════════════════════════ */
+  #coursesC {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  #coursesC > div:first-child {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+  #coursesC .cc-wrap { margin-bottom: 0; }
+
+  /* ═══════════════════════════════════════════
+     PROGRESS — 4-col stats
+  ═══════════════════════════════════════════ */
+  #progressC > div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: repeat(4,1fr) !important;
+  }
+
+  /* ═══════════════════════════════════════════
+     LESSON — step bar & wider layout
+  ═══════════════════════════════════════════ */
+  .les-step-bar { padding: 10px 52px; gap: 4px; }
+  .step-dot .step-line { width: 24px; }
+  #lessonC > div:nth-child(2) { padding-left: 52px; padding-right: 52px; }
+  .step-c { width: 32px; height: 32px; font-size: 11px; }
+
+  /* Terms 2-column */
+  #lessonC .term-card { display: inline-block; }
+
+  /* ═══════════════════════════════════════════
+     PAYWALL — two-column plan comparison
+  ═══════════════════════════════════════════ */
+  #paywallC .pw-plan { }
+
+  /* Plans side by side */
+  #paywallC > div:nth-child(3),
+  #paywallC > div:nth-child(4) {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  /* ═══════════════════════════════════════════
+     LANDING PAGE — full desktop layout
+  ═══════════════════════════════════════════ */
+
+  /* Landing nav */
+  .lnav {
+    height: 68px;
+    padding: 0 8%;
+    max-width: 100%;
+  }
+
+  /* Hero section */
+  .hero {
+    padding: 90px 8% 80px;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .hero h1 { font-size: 56px; line-height: 1.05; letter-spacing: -.04em; }
+  .hglow { width: 700px; height: 500px; }
+
+  /* Hero CTA — horizontal buttons */
+  .hero .btn.blg.bfw {
+    width: auto;
+    min-width: 210px;
+    flex: 1;
+  }
+  .hero > div > div > div[style*="flex-direction:column"] {
+    flex-direction: row !important;
+    justify-content: center;
+  }
+
+  /* Hero stats bar */
+  .hero > div > div > div[style*="justify-content:space-around"] {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Section padding */
+  .lsec {
+    padding: 64px 8%;
+    border-top: 1px solid var(--line2);
+  }
+
+  .lh2 { font-size: 26px !important; }
+
+  /* Features — 2×2 grid */
+  .lsec > div[style*="margin-top:24px"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 32px;
+  }
+  .lsec > div[style*="margin-top:24px"] > div {
+    margin-bottom: 0 !important;
+  }
+
+  /* Landing courses — 3-col grid */
+  #landC .cc-wrap {
+    display: block;
+  }
+  #landC .lsec:nth-child(4) > div:last-child,
+  #landC .lsec:has(.cc-wrap) {
+    display: block;
+  }
+  /* Courses inside landing lsec — use grid on the section */
+  #landC .lsec:nth-child(4) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  /* Header row of the courses section spans full width */
+
+  /* Testimonials — 3 across, no horizontal scroll */
+  .lsec > div[style*="overflow-x:auto"] {
+    overflow-x: visible !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    padding-bottom: 0 !important;
+  }
+  .lsec > div[style*="overflow-x:auto"] > div {
+    width: auto !important;
+    margin-right: 0 !important;
+    flex-shrink: unset !important;
+  }
+
+  /* Landing footer */
+  #landC > div[style*="padding:24px"] {
+    padding: 32px 8% !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #landC > div[style*="padding:24px"] > div,
+  #landC > div[style*="padding:24px"] > p {
+    margin: 0;
+  }
+
+  /* CTA section wider */
+  .lsec:last-of-type p { max-width: 500px !important; }
+
+  /* Auth pages — wider card */
+  .acard { max-width: 460px; }
+
+  /* ═══════════════════════════════════════════
+     ADMIN — tabs as pills row, wider content
+  ═══════════════════════════════════════════ */
+  .atabs { gap: 8px; }
+  .atab  { padding: 8px 18px; font-size: 12px; }
+
+  /* Admin quick-actions — 3-col grid */
+  #adminC .card .aact {
+    padding: 18px 20px;
+  }
+
+  /* ═══════════════════════════════════════════
+     GENERAL DESKTOP POLISH
+  ═══════════════════════════════════════════ */
+  .card { border-radius: 18px; }
+  .cc-wrap { border-radius: 20px !important; }
+  .btn { transition: opacity .15s, transform .1s, box-shadow .15s; }
+  .btn:hover:not(:active) { opacity: .88; }
+  .bpr:hover { box-shadow: 0 6px 28px rgba(85,112,245,.4) !important; }
+
+  /* Wider modal overlay */
+  .mc-card { max-width: 420px; padding: 48px 36px; }
+
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LARGE DESKTOP  ≥ 1200px
+═══════════════════════════════════════════════════════════ */
+@media (min-width: 1200px) {
+  .has-sidebar .bnav { width: 256px; }
+  .has-sidebar .pages { margin-left: 256px; }
+
+  #dashC, #coursesC, #progressC, #adminC { max-width: 1100px; padding: 48px 64px; }
+  #cdC { max-width: 1100px; }
+  #lessonC { max-width: 960px; }
+  #paywallC { max-width: 760px; }
+
+  .hero { max-width: 960px; }
+  .hero h1 { font-size: 64px; }
+  .lsec { padding: 72px 10%; }
+  .lnav { padding: 0 10%; }
+}
