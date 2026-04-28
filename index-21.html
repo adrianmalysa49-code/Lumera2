@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Lumera — Learn Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app"><div class="bg-blob-a"></div><div class="bg-blob-b"></div>
+  <div class="tb" id="TB">
+    <div id="TBL" class="logo-row" onclick="P('landing')">
+      <div class="lmark" style="display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lmg" x1="4" y1="44" x2="44" y2="4" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9b7ff4"></stop><stop offset="100%" stop-color="#c4b5fd"></stop></linearGradient></defs><path d="M14 38 C6 34 4 24 8 16 C10 12 14 9 18 8 C14 14 14 22 18 28 C20 32 22 35 24 36 Z" fill="url(#lmg)" opacity="0.9"/><path d="M24 10 C27 8 31 8 34 10 C38 13 39 18 37 23 C35 27 31 30 27 31 C28 28 28 24 26 21 C25 18 24 14 24 10 Z" fill="none" stroke="url(#lmg)" stroke-width="2.5" stroke-linecap="round"/><path d="M27 31 C29 32 31 34 30 37 C29 39 26 40 24 39" fill="none" stroke="url(#lmg)" stroke-width="2.5" stroke-linecap="round"/><path d="M32 14 L36 10" stroke="url(#lmg)" stroke-width="2" stroke-linecap="round"/><circle cx="37" cy="9" r="2.5" fill="#e0d4ff"/></svg></div>
+      <span class="lname fd" style="background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Lumera</span>
+    </div>
+    <div class="tb-right" id="TBR">
+      <div class="lang-sw">
+        <button class="lb on" data-l="en" onclick="SL('en')">&#x1F1EC;&#x1F1E7; EN</button>
+        <button class="lb" data-l="de" onclick="SL('de')">&#x1F1E9;&#x1F1EA; DE</button>
+      </div>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page bare on" id="p-landing"><div id="landC"></div></div>
+    <div class="page bare" id="p-login"><div id="loginC"></div></div>
+    <div class="page bare" id="p-signup"><div id="signupC"></div></div>
+    <div class="page bare" id="p-onboarding"><div id="obC" style="min-height:100%;display:flex;flex-direction:column;position:relative;z-index:1"></div></div>
+    <div class="page" id="p-dashboard"><div id="dashC" style="padding:20px"></div></div>
+    <div class="page" id="p-courses"><div id="coursesC" style="padding:20px 20px 0"></div></div>
+    <div class="page" id="p-course-detail"><div id="cdC"></div></div>
+    <div class="page" id="p-lesson"><div id="lessonC" style="padding:0"></div></div>
+    <div class="page" id="p-progress"><div id="progressC" style="padding:20px 20px 0"></div></div>
+    <div class="page" id="p-paywall"><div id="paywallC" style="padding:20px 20px 60px"></div></div>
+    <div class="page" id="p-admin"><div id="adminC" style="padding:20px 20px 0"></div></div>
+  </div>
+  <div class="bnav" id="BN" style="display:none">
+    <button class="ntab" onclick="P('dashboard')" data-p="dashboard"><div class="ni">&#x1F3E0;</div><div class="nl" id="nl0">Home</div></button>
+    <button class="ntab" onclick="P('courses')" data-p="courses"><div class="ni">&#x1F4DA;</div><div class="nl" id="nl1">Courses</div></button>
+    <button class="ntab" onclick="openCurLesson()" data-p="lesson"><div class="ni">&#x25B6;&#xFE0F;</div><div class="nl" id="nl2">Lesson</div></button>
+    <button class="ntab" onclick="P('progress')" data-p="progress"><div class="ni">&#x1F4C8;</div><div class="nl" id="nl3">Progress</div></button>
+    <button class="ntab" onclick="P('admin')" data-p="admin"><div class="ni">&#x2699;&#xFE0F;</div><div class="nl" id="nl4">Admin</div></button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
