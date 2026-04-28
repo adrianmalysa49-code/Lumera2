@@ -398,7 +398,7 @@ function RL(){
     +'<div style="padding:24px;border-top:1px solid var(--line2);display:flex;flex-direction:column;align-items:center;gap:12px">'
     +logoHTML().replace('class="logo-row"','style="cursor:pointer"')
     +'<div style="display:flex;gap:20px;font-size:12px;color:var(--t3)">'
-    +'<a>'+t('fp')+'<\/a><a>'+t('ft')+'<\/a><a>'+t('fc')+'<\/a><\/div>'
+    +'<a class="footer-link" href="#">'+t('fp')+'<\/a><a class="footer-link" href="#">'+t('ft')+'<\/a><a class="footer-link" href="#">'+t('fc')+'<\/a><\/div>'
     +'<p style="font-size:11px;color:var(--t3)">&#xA9; 2026 Lumera<\/p>'
     +'<\/div>';
 }
