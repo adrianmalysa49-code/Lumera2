@@ -418,8 +418,7 @@ function RLG(){
     +'<\/div><\/div>';
   var btn = document.getElementById('lBtn');
   if(btn) btn.onclick = function(){
-    if(window.__clerk){ window.__clerk.openSignIn({afterSignInUrl:'https://lumera2-iota.vercel.app'}); }
-    else { window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-in?redirect_url=https://lumera2-iota.vercel.app'; }
+    window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-in?redirect_url=https://lumera2-iota.vercel.app';
   };
 }
 
@@ -438,8 +437,7 @@ function RSG(){
     +'<\/div><\/div>';
   var btn = document.getElementById('sBtn');
   if(btn) btn.onclick = function(){
-    if(window.__clerk){ window.__clerk.openSignUp({afterSignUpUrl:'https://lumera2-iota.vercel.app'}); }
-    else { window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-up?redirect_url=https://lumera2-iota.vercel.app'; }
+    window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-up?redirect_url=https://lumera2-iota.vercel.app';
   };
 }
 
@@ -609,7 +607,7 @@ function RD(){
   }
 
   document.getElementById('dashC').innerHTML =
-    '<div style="margin-bottom:6px"><div class="fd" style="font-weight:800;font-size:24px;margin-bottom:4px">'+t('dg')+' Taylor &#x1F44B;<\/div><div style="font-size:14px;color:var(--t2)">'+t('ds')+'<\/div><\/div>'
+    '<div style="margin-bottom:6px"><div class="fd" style="font-weight:800;font-size:24px;margin-bottom:4px">'+t('dg')+' '+(window.__clerk&&window.__clerk.user?(window.__clerk.user.firstName||window.__clerk.user.emailAddresses[0].emailAddress.split('@')[0]):'')+'  &#x1F44B;<\/div><div style="font-size:14px;color:var(--t2)">'+t('ds')+'<\/div><\/div>'
 
     +'<div class="dash-hero" style="margin-bottom:24px">'
     +'<div class="dash-hero-glow"><\/div>'
