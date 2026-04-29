@@ -1389,10 +1389,23 @@ async function initClerk(){
     await window.Clerk.load();
     window.__clerk = window.Clerk;
     window.__clerk.addListener(function(r){
+      var tab = document.getElementById('admin-tab');
+      if(tab){
+        var emails = r.user && r.user.emailAddresses ? r.user.emailAddresses.map(function(e){return e.emailAddress;}) : [];
+        tab.style.display = emails.indexOf('lumera0000@gmail.com') >= 0 ? 'flex' : 'none';
+      }
       if(r.user && ['landing','login','signup'].indexOf(CP)>=0){ P('dashboard'); }
       else if(!r.user && document.getElementById('app').classList.contains('authed')){ document.getElementById('app').classList.remove('authed'); P('landing'); }
     });
-    if(window.__clerk.user){ document.getElementById('app').classList.add('authed'); P('dashboard'); }
+    if(window.__clerk.user){
+      document.getElementById('app').classList.add('authed');
+      var tab = document.getElementById('admin-tab');
+      if(tab){
+        var emails = window.__clerk.user.emailAddresses ? window.__clerk.user.emailAddresses.map(function(e){return e.emailAddress;}) : [];
+        tab.style.display = emails.indexOf('lumera0000@gmail.com') >= 0 ? 'flex' : 'none';
+      }
+      P('dashboard');
+    }
   } catch(e){ console.warn('Clerk error',e); }
 }
 
