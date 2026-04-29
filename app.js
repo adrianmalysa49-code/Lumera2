@@ -418,7 +418,28 @@ function RLG(){
     +'<\/div><\/div>';
   var btn = document.getElementById('lBtn');
   if(btn) btn.onclick = function(){
-    window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-in?redirect_url=https://lumera2-iota.vercel.app';
+    if(window.__clerk){
+      if(window.__clerk.user){ P('dashboard'); return; }
+      window.__clerk.openSignIn();
+    } else {
+      var orig = btn.textContent;
+      btn.textContent = '⏳';
+      btn.disabled = true;
+      var waited = 0;
+      var iv = setInterval(function(){
+        waited += 200;
+        if(window.__clerk){
+          clearInterval(iv);
+          btn.textContent = orig; btn.disabled = false;
+          if(window.__clerk.user){ P('dashboard'); }
+          else { window.__clerk.openSignIn(); }
+        } else if(waited > 6000){
+          clearInterval(iv);
+          btn.textContent = orig; btn.disabled = false;
+          alert('Could not connect to Clerk. Please refresh.');
+        }
+      }, 200);
+    }
   };
 }
 
@@ -437,7 +458,28 @@ function RSG(){
     +'<\/div><\/div>';
   var btn = document.getElementById('sBtn');
   if(btn) btn.onclick = function(){
-    window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-up?redirect_url=https://lumera2-iota.vercel.app';
+    if(window.__clerk){
+      if(window.__clerk.user){ P('dashboard'); return; }
+      window.__clerk.openSignUp();
+    } else {
+      var orig = btn.textContent;
+      btn.textContent = '⏳';
+      btn.disabled = true;
+      var waited = 0;
+      var iv = setInterval(function(){
+        waited += 200;
+        if(window.__clerk){
+          clearInterval(iv);
+          btn.textContent = orig; btn.disabled = false;
+          if(window.__clerk.user){ P('dashboard'); }
+          else { window.__clerk.openSignUp(); }
+        } else if(waited > 6000){
+          clearInterval(iv);
+          btn.textContent = orig; btn.disabled = false;
+          alert('Could not connect to Clerk. Please refresh.');
+        }
+      }, 200);
+    }
   };
 }
 
