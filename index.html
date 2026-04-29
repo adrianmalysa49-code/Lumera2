@@ -41,7 +41,11 @@
 
 <!-- Clerk Auth -->
 <script>window.CLERK_PUBLISHABLE_KEY = 'pk_test_d2FudGVkLXdlYXNlbC0zMS5jbGVyay5hY2NvdW50cy5kZXYk';</script>
-<script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" crossorigin="anonymous"></script>
+<script async crossorigin="anonymous"
+  src="https://wanted-weasel-31.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+  onload="window.__clerkReady=true; if(window.__clerkInitFn) window.__clerkInitFn();"
+  onerror="console.error('Clerk failed to load'); window.P && P('landing');">
+</script>
 </head>
 <body>
 <div id="app"><div class="bg-blob-a"></div><div class="bg-blob-b"></div>
@@ -78,6 +82,6 @@
     <button class="ntab" onclick="P('admin')" data-p="admin"><div class="ni">&#x2699;&#xFE0F;</div><div class="nl" id="nl4">Admin</div></button>
   </div>
 </div>
-<script src="app.js" defer></script>
+<script src="app.js"></script>
 </body>
 </html>
