@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — Lumera</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0c0b1a;color:#e8e6f0;font-family:'Sora',sans-serif;line-height:1.75}
+  a{color:#9b7ff4;text-decoration:none}
+  a:hover{text-decoration:underline}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:60px;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:rgba(12,11,26,.92);backdrop-filter:blur(20px);z-index:99}
+  .logo-row{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+  .lname{font-size:17px;font-weight:700;background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .lang-sw{display:flex;gap:6px}
+  .lb{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);padding:5px 12px;border-radius:20px;font-size:12px;font-family:inherit;cursor:pointer;transition:.2s}
+  .lb.on{background:rgba(123,89,244,.25);border-color:#9b7ff4;color:#c4b5fd;font-weight:600}
+  main{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+  h1{font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .updated{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:40px;display:block}
+  h2{font-size:15px;font-weight:700;color:#c4b5fd;margin-top:36px;margin-bottom:10px;letter-spacing:.01em}
+  p{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:12px}
+  ul{padding-left:20px;margin-bottom:12px}
+  li{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:6px}
+  .contact-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 32px;margin-top:24px}
+  .ci{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .ci:last-child{margin-bottom:0}
+  .ci-icon{font-size:20px;width:32px;text-align:center;flex-shrink:0}
+  .ci-label{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:3px}
+  .btn-contact{display:inline-block;background:linear-gradient(135deg,#7c59f4,#9b7ff4);color:white;padding:12px 28px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;margin-top:8px}
+  footer{text-align:center;padding:24px;font-size:12px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.07)}
+  footer a{color:rgba(255,255,255,.4)}
+  footer a:hover{color:#9b7ff4}
+  [lang-block]{display:none}
+  [lang-block].visible{display:block}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo-row" href="index.html">
+    <img src="data:image/png;base64,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" width="36" height="36" style="border-radius:8px;object-fit:cover">
+    <span class="lname">Lumera</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:16px">
+    <div class="lang-sw">
+      <button class="lb on" data-l="en" onclick="setLang('en')">🇬🇧 EN</button>
+      <button class="lb" data-l="de" onclick="setLang('de')">🇩🇪 DE</button>
+    </div>
+    <a href="index.html" style="font-size:13px;color:rgba(255,255,255,.4)">← Back</a>
+  </div>
+</nav>
+<main>
+
+<div lang-block="en" class="visible">
+  <h1>Contact</h1>
+  <p style="color:rgba(255,255,255,.6);font-size:15px;margin-top:8px;margin-bottom:0">Have a question or issue? We reply within 24 hours.</p>
+
+  <div class="contact-card">
+    <div class="ci">
+      <span class="ci-icon">✉️</span>
+      <div><div class="ci-label">General enquiries</div><a href="mailto:hello@lumera.app">hello@lumera.app</a></div>
+    </div>
+    <div class="ci">
+      <span class="ci-icon">💳</span>
+      <div><div class="ci-label">Billing & subscriptions</div><a href="mailto:billing@lumera.app">billing@lumera.app</a></div>
+    </div>
+    <div class="ci">
+      <span class="ci-icon">🔒</span>
+      <div><div class="ci-label">Data protection (GDPR)</div><a href="mailto:privacy@lumera.app">privacy@lumera.app</a></div>
+    </div>
+  </div>
+  <div class="contact-card" style="text-align:center;margin-top:12px">
+    <p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:14px">Response time: within 24h on business days</p>
+    <a class="btn-contact" href="mailto:hello@lumera.app">Send us a message ✉️</a>
+  </div>
+</div>
+
+<div lang-block="de">
+  <h1>Kontakt</h1>
+  <p style="color:rgba(255,255,255,.6);font-size:15px;margin-top:8px;margin-bottom:0">Haben Sie eine Frage oder ein Problem? Wir antworten innerhalb von 24 Stunden.</p>
+
+  <div class="contact-card">
+    <div class="ci">
+      <span class="ci-icon">✉️</span>
+      <div><div class="ci-label">Allgemeine Anfragen</div><a href="mailto:hello@lumera.app">hello@lumera.app</a></div>
+    </div>
+    <div class="ci">
+      <span class="ci-icon">💳</span>
+      <div><div class="ci-label">Abrechnung & Abonnements</div><a href="mailto:billing@lumera.app">billing@lumera.app</a></div>
+    </div>
+    <div class="ci">
+      <span class="ci-icon">🔒</span>
+      <div><div class="ci-label">Datenschutz (DSGVO)</div><a href="mailto:privacy@lumera.app">privacy@lumera.app</a></div>
+    </div>
+  </div>
+  <div class="contact-card" style="text-align:center;margin-top:12px">
+    <p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:14px">Antwortzeit: innerhalb von 24h an Werktagen</p>
+    <a class="btn-contact" href="mailto:hello@lumera.app">Nachricht senden ✉️</a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  © 2026 Lumera &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="terms.html">Terms</a> &nbsp;·&nbsp;
+  <a href="contact.html">Contact</a>
+</footer>
+<script>
+  function setLang(l){
+    document.querySelectorAll('[lang-block]').forEach(el=>{
+      el.classList.toggle('visible', el.getAttribute('lang-block')===l);
+    });
+    document.querySelectorAll('.lb').forEach(b=>{
+      b.classList.toggle('on', b.dataset.l===l);
+    });
+    localStorage.setItem('lumera_lang', l);
+  }
+  var saved = localStorage.getItem('lumera_lang') || 'en';
+  setLang(saved);
+</script>
+</body>
+</html>
