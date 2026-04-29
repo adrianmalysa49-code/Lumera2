@@ -540,3 +540,46 @@ textarea.inp{resize:none;min-height:90px;line-height:1.6}
   .lnav { padding: 0 8%; height: 68px; }
   .lnav .lname { font-size: 18px !important; }
 }
+
+/* ── Clerk component dark theme overrides ── */
+.cl-rootBox { width: 100% !important; }
+.cl-card {
+  background: rgba(8,10,20,.85) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 32px 80px rgba(0,0,0,.6) !important;
+  backdrop-filter: blur(24px) !important;
+}
+.cl-headerTitle, .cl-headerSubtitle,
+.cl-formFieldLabel, .cl-identityPreviewText,
+.cl-footerActionText { color: #e8e6f0 !important; }
+.cl-formFieldInput {
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+.cl-formFieldInput:focus {
+  border-color: #9b7ff4 !important;
+  box-shadow: 0 0 0 2px rgba(155,127,244,.2) !important;
+}
+.cl-formButtonPrimary {
+  background: linear-gradient(135deg,#5570f5,#7b6af5) !important;
+  border-radius: 12px !important;
+  font-family: 'Sora', sans-serif !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 24px rgba(85,112,245,.4) !important;
+}
+.cl-footerActionLink { color: #9b7ff4 !important; }
+.cl-dividerLine { background: rgba(255,255,255,.08) !important; }
+.cl-dividerText { color: rgba(255,255,255,.4) !important; }
+.cl-socialButtonsBlockButton {
+  background: rgba(255,255,255,.04) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  border-radius: 12px !important;
+  color: #e8e6f0 !important;
+}
+.cl-socialButtonsBlockButton:hover {
+  background: rgba(255,255,255,.08) !important;
+}
+.cl-internal-b3fm6y { background: transparent !important; }
