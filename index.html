@@ -40,11 +40,11 @@
 <meta name="apple-mobile-web-app-title" content="Lumera">
 
 <!-- Clerk Auth -->
-<script>window.CLERK_PUBLISHABLE_KEY = 'pk_test_d2FudGVkLXdlYXNlbC0zMS5jbGVyay5hY2NvdW50cy5kZXYk';</script>
 <script async crossorigin="anonymous"
+  data-clerk-publishable-key="pk_test_d2FudGVkLXdlYXNlbC0zMS5jbGVyay5hY2NvdW50cy5kZXYk"
   src="https://wanted-weasel-31.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
-  onload="window.__clerkReady=true; if(window.__clerkInitFn) window.__clerkInitFn();"
-  onerror="console.error('Clerk failed to load'); window.P && P('landing');">
+  onload="window.__clerkScriptLoaded=true; if(window.__clerkInitFn) window.__clerkInitFn();"
+  onerror="console.warn('Clerk failed'); window.__clerkFailed=true;">
 </script>
 </head>
 <body>
