@@ -271,18 +271,19 @@ function UTB(n){
   var L2 = document.getElementById('TBL');
   var R  = document.getElementById('TBR');
   var titles = {dashboard:t('n0'),courses:t('csh'),'course-detail':t('ct')[CUR_COURSE],lesson:t('les_title'),progress:t('pg'),admin:t('ah'),paywall:'Premium'};
+  var signOutBtn = '<button onclick="clerkSignOut()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--t2);font-family:inherit;font-size:12px;font-weight:600;padding:6px 13px;border-radius:20px;cursor:pointer;margin-left:6px">'+(L==='de'?'Abmelden':'Sign out')+'<\/button>';
   if(n === 'lesson'){
     L2.innerHTML = '<button class="back-btn" onclick="P(\'course-detail\')">&#x2190; '+ t('ct')[CUR_COURSE] +'<\/button>';
     L2.onclick = null;
-    R.innerHTML = langSw();
+    R.innerHTML = langSw() + signOutBtn;
   } else if(n === 'course-detail'){
     L2.innerHTML = '<button class="back-btn" onclick="P(\'courses\')">&#x2190; '+t('csh')+'<\/button>';
     L2.onclick = null;
-    R.innerHTML = langSw();
+    R.innerHTML = langSw() + signOutBtn;
   } else {
     L2.innerHTML = logoHTML() + '<span class="fd" style="font-size:13px;font-weight:600;color:var(--t2);margin-left:4px">'+titles[n]+'<\/span>';
     L2.onclick = function(){ P('landing'); };
-    R.innerHTML = langSw();
+    R.innerHTML = langSw() + signOutBtn;
   }
 }
 
