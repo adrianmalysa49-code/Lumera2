@@ -295,29 +295,24 @@ function clerkSignOut(){
 /* =========================================================
    CLERK AUTH INIT
 ========================================================= */
-(async function initClerk(){
+async function initClerk(){
   try {
     var clerk = new window.Clerk(window.CLERK_PUBLISHABLE_KEY);
     await clerk.load();
     window.__clerk = clerk;
 
-    // Listen for auth state changes
     clerk.addListener(function(resources){
       var user = resources.user;
       var wasAuthed = document.getElementById('app').classList.contains('authed');
       if(user && !wasAuthed){
         document.getElementById('app').classList.add('authed');
-        // Re-render topbar with user avatar
-        if(['landing','login','signup'].indexOf(CP) >= 0){
-          P('dashboard');
-        }
+        if(['landing','login','signup'].indexOf(CP) >= 0) P('dashboard');
       } else if(!user && wasAuthed){
         document.getElementById('app').classList.remove('authed');
         P('landing');
       }
     });
 
-    // Initial routing
     if(clerk.user){
       document.getElementById('app').classList.add('authed');
       P('dashboard');
@@ -328,7 +323,18 @@ function clerkSignOut(){
     console.warn('Clerk init error:', e);
     P('landing');
   }
-})();
+}
+
+// Trigger init — either Clerk already loaded or wait for onload
+if(window.__clerkReady){
+  initClerk();
+} else {
+  window.__clerkInitFn = initClerk;
+  // Fallback: if Clerk doesn't load in 5s, just show landing
+  setTimeout(function(){
+    if(!window.__clerk) { console.warn('Clerk timeout'); P('landing'); }
+  }, 5000);
+}
  };
     // Show user avatar + logout if authed
     if(window.__clerk && window.__clerk.user){
@@ -1378,29 +1384,24 @@ function clerkSignOut(){
 /* =========================================================
    CLERK AUTH INIT
 ========================================================= */
-(async function initClerk(){
+async function initClerk(){
   try {
     var clerk = new window.Clerk(window.CLERK_PUBLISHABLE_KEY);
     await clerk.load();
     window.__clerk = clerk;
 
-    // Listen for auth state changes
     clerk.addListener(function(resources){
       var user = resources.user;
       var wasAuthed = document.getElementById('app').classList.contains('authed');
       if(user && !wasAuthed){
         document.getElementById('app').classList.add('authed');
-        // Re-render topbar with user avatar
-        if(['landing','login','signup'].indexOf(CP) >= 0){
-          P('dashboard');
-        }
+        if(['landing','login','signup'].indexOf(CP) >= 0) P('dashboard');
       } else if(!user && wasAuthed){
         document.getElementById('app').classList.remove('authed');
         P('landing');
       }
     });
 
-    // Initial routing
     if(clerk.user){
       document.getElementById('app').classList.add('authed');
       P('dashboard');
@@ -1411,4 +1412,15 @@ function clerkSignOut(){
     console.warn('Clerk init error:', e);
     P('landing');
   }
-})();
+}
+
+// Trigger init — either Clerk already loaded or wait for onload
+if(window.__clerkReady){
+  initClerk();
+} else {
+  window.__clerkInitFn = initClerk;
+  // Fallback: if Clerk doesn't load in 5s, just show landing
+  setTimeout(function(){
+    if(!window.__clerk) { console.warn('Clerk timeout'); P('landing'); }
+  }, 5000);
+}
