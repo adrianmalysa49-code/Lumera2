@@ -596,3 +596,5 @@ textarea.inp{resize:none;min-height:90px;line-height:1.6}
 .auth-sw{font-size:13px;color:var(--t3);margin:0}
 .auth-sw span{color:#9b7ff4;cursor:pointer;font-weight:600}
 .auth-sw span:hover{text-decoration:underline}
+.auth-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.auth-brand{font-size:20px;font-weight:800;background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
