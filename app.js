@@ -325,14 +325,16 @@ async function initClerk(){
   }
 }
 
-// Trigger init — either Clerk already loaded or wait for onload
+// Show landing immediately — don't wait for Clerk
+P('landing');
+
+// Then init Clerk in background to check if user is already logged in
 if(window.__clerkReady){
   initClerk();
 } else {
   window.__clerkInitFn = initClerk;
-  // Fallback: if Clerk doesn't load in 5s, just show landing
   setTimeout(function(){
-    if(!window.__clerk) { console.warn('Clerk timeout'); P('landing'); }
+    if(!window.__clerk) console.warn('Clerk timeout — running in offline mode');
   }, 5000);
 }
  };
@@ -1414,13 +1416,15 @@ async function initClerk(){
   }
 }
 
-// Trigger init — either Clerk already loaded or wait for onload
+// Show landing immediately — don't wait for Clerk
+P('landing');
+
+// Then init Clerk in background to check if user is already logged in
 if(window.__clerkReady){
   initClerk();
 } else {
   window.__clerkInitFn = initClerk;
-  // Fallback: if Clerk doesn't load in 5s, just show landing
   setTimeout(function(){
-    if(!window.__clerk) { console.warn('Clerk timeout'); P('landing'); }
+    if(!window.__clerk) console.warn('Clerk timeout — running in offline mode');
   }, 5000);
 }
