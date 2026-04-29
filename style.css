@@ -528,3 +528,15 @@ textarea.inp{resize:none;min-height:90px;line-height:1.6}
 /* footer links */
 .footer-link{cursor:pointer;color:var(--t3);transition:color .2s}
 .footer-link:hover{color:var(--t1)}
+
+/* ── LANDING NAV logo size override ── */
+.lnav .logo-row { gap: 12px; }
+
+/* ── FOOTER link hover ── */
+#landC > div:last-child { padding: 36px 8% !important; }
+
+/* ── Desktop: lnav bigger padding ── */
+@media (min-width: 900px) {
+  .lnav { padding: 0 8%; height: 68px; }
+  .lnav .lname { font-size: 18px !important; }
+}
