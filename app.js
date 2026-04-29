@@ -403,7 +403,7 @@ function RL(){
     +'<span class="lname fd" style="font-size:16px;background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Lumera<\/span>'
     +'<\/div>'
     +'<div style="display:flex;gap:20px;font-size:12px;color:var(--t3)">'
-    +'<a class="footer-link" href="#">'+t('fp')+'<\/a><a class="footer-link" href="#">'+t('ft')+'<\/a><a class="footer-link" href="#">'+t('fc')+'<\/a><\/div>'
+    +'<a class="footer-link" href="/privacy">'+t('fp')+'<\/a><a class="footer-link" href="/terms">'+t('ft')+'<\/a><a class="footer-link" href="/contact">'+t('fc')+'<\/a><\/div>'
     +'<p style="font-size:11px;color:var(--t3)">&#xA9; 2026 Lumera<\/p>'
     +'<\/div>';
 }
