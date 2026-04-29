@@ -484,36 +484,44 @@ function RL(){
 ========================================================= */
 function RLG(){
   var c = document.getElementById('loginC');
-  c.innerHTML = '<div class="awrap"><div class="acard" id="clerk-sign-in-mount" style="min-height:420px;display:flex;align-items:center;justify-content:center"><div style="color:var(--t3);font-size:13px">Loading...</div></div></div>';
-  setTimeout(function(){
+  c.innerHTML = '<div class="awrap"><div class="acard" id="clerk-sign-in-mount" style="min-height:420px;display:flex;align-items:center;justify-content:center"><div style="color:var(--t3);font-size:13px">Loading…</div></div></div>';
+  var attempts = 0;
+  var poll = setInterval(function(){
+    attempts++;
     var el = document.getElementById('clerk-sign-in-mount');
-    if(el && window.__clerk){
+    if(!el){ clearInterval(poll); return; }
+    if(window.__clerk){
+      clearInterval(poll);
       el.innerHTML = '';
       el.style.display = 'block';
       el.style.minHeight = 'auto';
-      window.__clerk.mountSignIn(el, {
-        afterSignInUrl: window.location.href,
-        signUpUrl: '#signup'
-      });
+      window.__clerk.mountSignIn(el);
+    } else if(attempts > 50){
+      clearInterval(poll);
+      el.innerHTML = '<div style="color:var(--t3);font-size:13px;text-align:center;padding:20px">Could not load sign-in. Please refresh.</div>';
     }
-  }, 100);
+  }, 200);
 }
 
 function RSG(){
   var c = document.getElementById('signupC');
-  c.innerHTML = '<div class="awrap"><div class="acard" id="clerk-sign-up-mount" style="min-height:420px;display:flex;align-items:center;justify-content:center"><div style="color:var(--t3);font-size:13px">Loading...</div></div></div>';
-  setTimeout(function(){
+  c.innerHTML = '<div class="awrap"><div class="acard" id="clerk-sign-up-mount" style="min-height:420px;display:flex;align-items:center;justify-content:center"><div style="color:var(--t3);font-size:13px">Loading…</div></div></div>';
+  var attempts = 0;
+  var poll = setInterval(function(){
+    attempts++;
     var el = document.getElementById('clerk-sign-up-mount');
-    if(el && window.__clerk){
+    if(!el){ clearInterval(poll); return; }
+    if(window.__clerk){
+      clearInterval(poll);
       el.innerHTML = '';
       el.style.display = 'block';
       el.style.minHeight = 'auto';
-      window.__clerk.mountSignUp(el, {
-        afterSignUpUrl: window.location.href,
-        signInUrl: '#login'
-      });
+      window.__clerk.mountSignUp(el);
+    } else if(attempts > 50){
+      clearInterval(poll);
+      el.innerHTML = '<div style="color:var(--t3);font-size:13px;text-align:center;padding:20px">Could not load sign-up. Please refresh.</div>';
     }
-  }, 100);
+  }, 200);
 }
 
 
