@@ -583,3 +583,16 @@ textarea.inp{resize:none;min-height:90px;line-height:1.6}
   background: rgba(255,255,255,.08) !important;
 }
 .cl-internal-b3fm6y { background: transparent !important; }
+
+/* ── Auth pages ── */
+.auth-pg{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;position:relative}
+.auth-back{position:fixed;top:16px;left:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--t2);font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;z-index:10}
+.auth-back:hover{background:rgba(255,255,255,.12)}
+.auth-card{width:100%;max-width:420px;background:rgba(8,10,20,.88);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px 32px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 32px 80px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;text-align:center}
+.auth-logo{width:60px;height:60px;border-radius:14px;object-fit:cover;margin-bottom:16px}
+.auth-h1{font-size:22px;font-weight:800;letter-spacing:-.02em;color:#fff;margin:0 0 8px}
+.auth-sub{font-size:14px;color:var(--t2);margin:0 0 28px}
+.auth-card .btn{width:100%;margin-bottom:16px}
+.auth-sw{font-size:13px;color:var(--t3);margin:0}
+.auth-sw span{color:#9b7ff4;cursor:pointer;font-weight:600}
+.auth-sw span:hover{text-decoration:underline}
