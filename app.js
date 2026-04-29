@@ -347,7 +347,7 @@ if(window.__clerkReady){
       R.innerHTML = langSw()
         +'<div style="display:flex;align-items:center;gap:8px;margin-left:4px">'
         +avatar
-        +'<button onclick="clerkSignOut()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--t2);font-family:inherit;font-size:11px;font-weight:600;padding:5px 11px;border-radius:20px;cursor:pointer;transition:.15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">Sign out<\/button>'
+        +'<button onclick="clerkSignOut()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--t2);font-family:inherit;font-size:11px;font-weight:600;padding:5px 11px;border-radius:20px;cursor:pointer;transition:.15s">Sign out<\/button>'
         +'<\/div>';
     } else {
       R.innerHTML = langSw();
