@@ -404,194 +404,45 @@ function RL(){
    AUTH PAGES
 ========================================================= */
 function RLG(){
-  var isDE = L === 'de';
-  document.getElementById('loginC').innerHTML =
-    '<div class="awrap">'
-    
-    
-    
-    +'<div class="acard">'
-
-    /* logo */
-    +'<div style="text-align:center;margin-bottom:32px">'
-    +'<div style="display:inline-flex;align-items:center;gap:8px">'
-    +'<div style="width:32px;height:32px;border-radius:9px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 20px rgba(85,112,245,.5)">&#x1F9E0;<\/div>'
-    +'<span class="fd" style="font-weight:800;font-size:18px"><span style="background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Lumera<\/span><\/span>'
-    +'<\/div><\/div>'
-
-    /* headline */
-    +'<div style="text-align:center;margin-bottom:28px">'
-    +'<h1 class="fd" style="font-weight:800;font-size:26px;letter-spacing:-.03em;margin-bottom:6px">'+t('lw')+'<\/h1>'
-    +'<p style="font-size:14px;color:var(--t2)">'+t('ls')+'<\/p>'
-    +'<\/div>'
-
-    /* glass card */
-    +'<div style="background:rgba(8,10,20,.72);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)">'
-
-    /* google */
-    +'<button class="aoauth" style="border-radius:12px;height:50px;margin-bottom:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04)">'
-    +'<svg width="18" height="18" viewBox="0 0 18 18">'
-    +'<path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"><\/path>'
-    +'<path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"><\/path>'
-    +'<path fill="#FBBC05" d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z"><\/path>'
-    +'<path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"><\/path>'
-    +'<\/svg>'
-    +t('lg')+'<\/button>'
-
-    /* divider */
-    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">'
-    +'<div style="flex:1;height:1px;background:rgba(255,255,255,.08)"><\/div>'
-    +'<span style="font-size:11px;color:var(--t3);letter-spacing:.04em">'+(isDE?'ODER':'OR')+'<\/span>'
-    +'<div style="flex:1;height:1px;background:rgba(255,255,255,.08)"><\/div>'
-    +'<\/div>'
-
-    /* email */
-    +'<div style="position:relative;margin-bottom:10px">'
-    +'<div style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.4;pointer-events:none">&#x2709;&#xFE0F;<\/div>'
-    +'<input class="inp" type="email" placeholder="'+(isDE?'E-Mail-Adresse':'Email address')+'" style="padding-left:44px;height:50px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)">'
-    +'<\/div>'
-
-    /* password */
-    +'<div style="position:relative;margin-bottom:6px">'
-    +'<div style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.4;pointer-events:none">&#x1F512;<\/div>'
-    +'<input class="inp" type="password" placeholder="'+(isDE?'Passwort':'Password')+'" style="padding-left:44px;height:50px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)">'
-    +'<\/div>'
-
-    /* forgot */
-    +'<div style="text-align:right;margin-bottom:18px">'
-    +'<a style="font-size:12px;color:var(--blu);cursor:pointer">'+t('lf')+'<\/a>'
-    +'<\/div>'
-
-    /* CTA */
-    +'<button onclick="P(\'dashboard\')" style="width:100%;height:52px;border-radius:14px;font-family:\'Sora\',sans-serif;font-weight:700;font-size:15px;background:linear-gradient(135deg,#5570f5,#7b6af5);color:#fff;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(85,112,245,.4);letter-spacing:-.01em">'+t('lb2')+'<\/button>'
-
-    +'<\/div>'
-
-    /* footer */
-    +'<p style="text-align:center;font-size:13px;color:var(--t2);margin-top:20px">'+t('lfo')+' <a onclick="P(\'signup\')" style="color:var(--blu);font-weight:600;cursor:pointer">'+t('ll')+'<\/a><\/p>'
-
+  var isDE = L==='de';
+  var c = document.getElementById('loginC');
+  c.innerHTML =
+    '<div class="auth-pg">'
+    +'<button class="auth-back" onclick="P(\'landing\')">&#x2190; '+(isDE?'Zur\u00fcck':'Back')+'<\/button>'
+    +'<div class="auth-card">'
+    +'<div class="auth-logo-wrap">'+logoHTML()+'<span class="auth-brand">Lumera<\/span><\/div>'
+    +'<h1 class="auth-h1">'+(isDE?'Willkommen zur\u00fcck':'Welcome back')+'<\/h1>'
+    +'<p class="auth-sub">'+(isDE?'Melde dich an, um weiterzulernen.':'Sign in to continue learning.')+'<\/p>'
+    +'<button id="lBtn" class="btn blg bpr bfw">'+(isDE?'Anmelden \u2192':'Sign in \u2192')+'<\/button>'
+    +'<p class="auth-sw">'+(isDE?'Kein Konto?\u00a0':'No account?\u00a0')+'<span onclick="P(\'signup\')">'+(isDE?'Registrieren':'Sign up free')+'<\/span><\/p>'
     +'<\/div><\/div>';
+  var btn = document.getElementById('lBtn');
+  if(btn) btn.onclick = function(){
+    if(window.__clerk){ window.__clerk.openSignIn({afterSignInUrl:'https://lumera2-iota.vercel.app'}); }
+    else { window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-in?redirect_url=https://lumera2-iota.vercel.app'; }
+  };
 }
 
 function RSG(){
-  var isDE = L === 'de';
-  document.getElementById('signupC').innerHTML =
-    '<div style="min-height:100%;display:flex;flex-direction:column;position:relative;z-index:1">'
-    +'<div class="auth-blob1"><\/div>'
-    +'<div class="auth-blob2"><\/div>'
-    +'<div class="auth-blob3"><\/div>'
-    
-    
-
-    /* header */
-    +'<div style="position:relative;z-index:1;padding:36px 24px 0;text-align:center">'
-    +'<div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px">'
-    +'<div style="width:32px;height:32px;border-radius:9px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 20px rgba(85,112,245,.5)">&#x1F9E0;<\/div>'
-    +'<span class="fd" style="font-weight:800;font-size:18px"><span style="background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Lumera<\/span><\/span>'
-    +'<\/div>'
-    +'<h1 class="fd" style="font-weight:800;font-size:26px;line-height:1.15;letter-spacing:-.03em;margin-bottom:8px">'
-    +(isDE?'Starte jetzt<br><span style="background:linear-gradient(135deg,#7b93f7,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">kostenlos<\/span>':'Start learning<br><span style="background:linear-gradient(135deg,#7b93f7,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">for free<\/span>')
-    +'<\/h1>'
-    +'<p style="font-size:14px;color:var(--t2);margin-bottom:24px">'+(isDE?'Kein Abo. Keine Kreditkarte.':'No subscription. No credit card.')+'<\/p>'
-    +'<\/div>'
-
-    /* glass card */
-    +'<div style="position:relative;z-index:1;flex:1;padding:0 20px 40px">'
-    +'<div style="background:rgba(16,17,26,.7);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:22px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)">'
-
-    /* google */
-    +'<button class="aoauth" style="border-radius:12px;height:50px;margin-bottom:16px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04)">'
-    +'<svg width="18" height="18" viewBox="0 0 18 18">'
-    +'<path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"><\/path>'
-    +'<path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"><\/path>'
-    +'<path fill="#FBBC05" d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z"><\/path>'
-    +'<path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"><\/path>'
-    +'<\/svg>'
-    +(isDE?'Mit Google fortfahren':'Continue with Google')+'<\/button>'
-
-    /* divider */
-    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">'
-    +'<div style="flex:1;height:1px;background:rgba(255,255,255,.08)"><\/div>'
-    +'<span style="font-size:11px;color:var(--t3);letter-spacing:.04em">'+(isDE?'ODER':'OR')+'<\/span>'
-    +'<div style="flex:1;height:1px;background:rgba(255,255,255,.08)"><\/div>'
-    +'<\/div>'
-
-    /* fields */
-    +'<div style="display:flex;flex-direction:column;gap:9px;margin-bottom:14px">'
-
-    +'<div style="position:relative">'
-    +'<div style="position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.4;pointer-events:none">&#x1F464;<\/div>'
-    +'<input class="inp" placeholder="'+(isDE?'Vor- und Nachname':'Full name')+'" style="padding-left:42px;height:50px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:14px">'
-    +'<\/div>'
-
-    +'<div style="position:relative">'
-    +'<div style="position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.4;pointer-events:none">&#x2709;&#xFE0F;<\/div>'
-    +'<input class="inp" type="email" placeholder="'+(isDE?'E-Mail-Adresse':'Email address')+'" style="padding-left:42px;height:50px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:14px">'
-    +'<\/div>'
-
-    +'<div style="position:relative">'
-    +'<div style="position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.4;pointer-events:none">&#x1F512;<\/div>'
-    +'<input class="inp" type="password" id="sgPw" placeholder="'+(isDE?'Passwort (min. 8 Zeichen)':'Password (min. 8 chars)')+'" style="padding-left:42px;padding-right:46px;height:50px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:14px">'
-    +'<button onclick="togglePw()" style="position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:15px;color:var(--t3);cursor:pointer;line-height:1" id="pwEye">&#x1F441;&#xFE0F;<\/button>'
-    +'<\/div>'
-
-    +'<div id="pwStrRow" style="display:none;gap:4px;align-items:center">'
-    +'<div style="flex:1;height:3px;background:var(--line);border-radius:99px;overflow:hidden"><div id="pwStr" style="height:100%;border-radius:99px;transition:width .3s,background .3s;width:0%"><\/div><\/div>'
-    +'<span id="pwStrLbl" style="font-size:10px;white-space:nowrap"><\/span>'
-    +'<\/div>'
-    +'<\/div>'
-
-    /* terms */
-    +'<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:18px;cursor:pointer" onclick="toggleTerms()">'
-    +'<div id="termsBox" style="width:20px;height:20px;flex-shrink:0;border-radius:6px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:1px;transition:all .15s"><\/div>'
-    +'<p style="font-size:12px;color:var(--t3);line-height:1.55;margin:0">'+(isDE?'Ich stimme den <span style="color:var(--blu)">Nutzungsbedingungen<\/span> und der <span style="color:var(--blu)">Datenschutzrichtlinie<\/span> zu.':'I agree to the <span style="color:var(--blu)">Terms of Service<\/span> and <span style="color:var(--blu)">Privacy Policy<\/span>.')+'<\/p>'
-    +'<\/div>'
-
-    /* CTA */
-    +'<button onclick="P(\'onboarding\')" style="width:100%;height:54px;border-radius:14px;font-family:\'Sora\',sans-serif;font-weight:700;font-size:15px;background:linear-gradient(135deg,#5570f5,#7b6af5);color:#fff;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(85,112,245,.4);letter-spacing:-.01em;margin-bottom:16px">'
-    +(isDE?'Konto erstellen &#x1F680;':'Create my account &#x1F680;')+'<\/button>'
-
-    /* social proof */
-    +'<div style="display:flex;align-items:center;justify-content:center;gap:8px">'
-    +'<div style="display:flex">'
-    +'<div style="width:20px;height:20px;border-radius:50%;background:#5570f5;border:2px solid rgba(16,17,26,.8);display:flex;align-items:center;justify-content:center;font-size:9px;margin-right:-5px">&#x1F464;<\/div>'
-    +'<div style="width:20px;height:20px;border-radius:50%;background:#9b7ff4;border:2px solid rgba(16,17,26,.8);display:flex;align-items:center;justify-content:center;font-size:9px;margin-right:-5px">&#x1F464;<\/div>'
-    +'<div style="width:20px;height:20px;border-radius:50%;background:#3ecb6e;border:2px solid rgba(16,17,26,.8);display:flex;align-items:center;justify-content:center;font-size:9px">&#x1F464;<\/div>'
-    +'<\/div>'
-    +'<span style="font-size:11px;color:var(--t3)">'+(isDE?'6.000+ Lernende dabei':'6,000+ learners joined')+'<\/span>'
-    +'<\/div>'
-
-    +'<\/div>'
-
-    /* sign in link */
-    +'<p style="text-align:center;font-size:13px;color:var(--t2);margin-top:18px">'+t('sfo')+' <a onclick="P(\'login\')" style="color:var(--blu);font-weight:600;cursor:pointer">'+t('slnk')+'<\/a><\/p>'
+  var isDE = L==='de';
+  var c = document.getElementById('signupC');
+  c.innerHTML =
+    '<div class="auth-pg">'
+    +'<button class="auth-back" onclick="P(\'landing\')">&#x2190; '+(isDE?'Zur\u00fcck':'Back')+'<\/button>'
+    +'<div class="auth-card">'
+    +'<div class="auth-logo-wrap">'+logoHTML()+'<span class="auth-brand">Lumera<\/span><\/div>'
+    +'<h1 class="auth-h1">'+(isDE?'Konto erstellen':'Create your account')+'<\/h1>'
+    +'<p class="auth-sub">'+(isDE?'Starte kostenlos mit Lumera.':'Start learning for free with Lumera.')+'<\/p>'
+    +'<button id="sBtn" class="btn blg bpr bfw">'+t('cb')+' \u2192<\/button>'
+    +'<p class="auth-sw">'+(isDE?'Bereits ein Konto?\u00a0':'Already have an account?\u00a0')+'<span onclick="P(\'login\')">'+(isDE?'Anmelden':'Sign in')+'<\/span><\/p>'
     +'<\/div><\/div>';
-
-  var pwInput = document.getElementById('sgPw');
-  if(pwInput){
-    pwInput.addEventListener('input', function(){
-      var v = this.value;
-      var row = document.getElementById('pwStrRow');
-      var bar = document.getElementById('pwStr');
-      var lbl = document.getElementById('pwStrLbl');
-      if(!row||!bar||!lbl) return;
-      if(v.length===0){row.style.display='none';return;}
-      row.style.display='flex';
-      var score=0;
-      if(v.length>=8) score++;
-      if(/[A-Z]/.test(v)) score++;
-      if(/[0-9]/.test(v)) score++;
-      if(/[^A-Za-z0-9]/.test(v)) score++;
-      var pct=(score/4)*100;
-      var col=score<=1?'#e55':score<=2?'#e8a84a':'#3ecb6e';
-      var txt=score<=1?(isDE?'Schwach':'Weak'):score<=2?(isDE?'Mittel':'Fair'):(isDE?'Stark':'Strong');
-      bar.style.width=pct+'%'; bar.style.background=col;
-      lbl.style.color=col; lbl.textContent=txt;
-    });
-  }
+  var btn = document.getElementById('sBtn');
+  if(btn) btn.onclick = function(){
+    if(window.__clerk){ window.__clerk.openSignUp({afterSignUpUrl:'https://lumera2-iota.vercel.app'}); }
+    else { window.location.href = 'https://wanted-weasel-31.clerk.accounts.dev/sign-up?redirect_url=https://lumera2-iota.vercel.app'; }
+  };
 }
 
-var _termsChecked = false;
 function toggleTerms(){
   _termsChecked = !_termsChecked;
   var box = document.getElementById('termsBox');
