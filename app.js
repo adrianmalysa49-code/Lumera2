@@ -297,11 +297,11 @@ function clerkSignOut(){
 ========================================================= */
 async function initClerk(){
   try {
-    var clerk = new window.Clerk(window.CLERK_PUBLISHABLE_KEY);
-    await clerk.load();
-    window.__clerk = clerk;
+    // With data-clerk-publishable-key, window.Clerk is the instance (not constructor)
+    await window.Clerk.load();
+    window.__clerk = window.Clerk;
 
-    clerk.addListener(function(resources){
+    window.__clerk.addListener(function(resources){
       var user = resources.user;
       var wasAuthed = document.getElementById('app').classList.contains('authed');
       if(user && !wasAuthed){
@@ -313,15 +313,12 @@ async function initClerk(){
       }
     });
 
-    if(clerk.user){
+    if(window.__clerk.user){
       document.getElementById('app').classList.add('authed');
       P('dashboard');
-    } else {
-      P('landing');
     }
   } catch(e){
     console.warn('Clerk init error:', e);
-    P('landing');
   }
 }
 
@@ -483,45 +480,45 @@ function RL(){
    AUTH PAGES
 ========================================================= */
 function RLG(){
+  var isDE = L === 'de';
   var c = document.getElementById('loginC');
-  c.innerHTML = '<div class="awrap"><div class="acard" id="clerk-sign-in-mount" style="min-height:420px;display:flex;align-items:center;justify-content:center"><div style="color:var(--t3);font-size:13px">Loading…</div></div></div>';
-  var attempts = 0;
-  var poll = setInterval(function(){
-    attempts++;
-    var el = document.getElementById('clerk-sign-in-mount');
-    if(!el){ clearInterval(poll); return; }
-    if(window.__clerk){
-      clearInterval(poll);
-      el.innerHTML = '';
-      el.style.display = 'block';
-      el.style.minHeight = 'auto';
-      window.__clerk.mountSignIn(el);
-    } else if(attempts > 50){
-      clearInterval(poll);
-      el.innerHTML = '<div style="color:var(--t3);font-size:13px;text-align:center;padding:20px">Could not load sign-in. Please refresh.</div>';
-    }
-  }, 200);
+  c.innerHTML =
+    '<div class="awrap">'
+    +'<div class="acard" style="text-align:center">'
+    +'<div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:32px">'
+    + logoHTML()
+    +'<span class="fd" style="font-weight:800;font-size:18px"><span style="background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Lumera<\/span><\/span>'
+    +'<\/div>'
+    +'<h1 class="fd" style="font-weight:800;font-size:24px;margin-bottom:8px">'+(isDE?'Willkommen zurück':'Welcome back')+'<\/h1>'
+    +'<p style="font-size:14px;color:var(--t2);margin-bottom:32px">'+(isDE?'Melde dich an um weiterzulernen':'Sign in to continue learning')+'<\/p>'
+    +'<button id="clerkSignInBtn" class="btn blg bpr bfw" style="margin-bottom:16px">'+(isDE?'Anmelden →':'Sign in →')+'<\/button>'
+    +'<p style="font-size:13px;color:var(--t3)">'+(isDE?'Noch kein Konto? ':'No account? ')+'<span style="color:var(--blue);cursor:pointer" onclick="P(&quot;signup&quot;)">'+(isDE?'Registrieren':'Sign up free')+'<\/span><\/p>'
+    +'<\/div><\/div>';
+  document.getElementById('clerkSignInBtn').onclick = function(){
+    if(window.__clerk){ window.__clerk.openSignIn(); }
+    else { alert(isDE?'Bitte Seite neu laden':'Please refresh the page'); }
+  };
 }
 
 function RSG(){
+  var isDE = L === 'de';
   var c = document.getElementById('signupC');
-  c.innerHTML = '<div class="awrap"><div class="acard" id="clerk-sign-up-mount" style="min-height:420px;display:flex;align-items:center;justify-content:center"><div style="color:var(--t3);font-size:13px">Loading…</div></div></div>';
-  var attempts = 0;
-  var poll = setInterval(function(){
-    attempts++;
-    var el = document.getElementById('clerk-sign-up-mount');
-    if(!el){ clearInterval(poll); return; }
-    if(window.__clerk){
-      clearInterval(poll);
-      el.innerHTML = '';
-      el.style.display = 'block';
-      el.style.minHeight = 'auto';
-      window.__clerk.mountSignUp(el);
-    } else if(attempts > 50){
-      clearInterval(poll);
-      el.innerHTML = '<div style="color:var(--t3);font-size:13px;text-align:center;padding:20px">Could not load sign-up. Please refresh.</div>';
-    }
-  }, 200);
+  c.innerHTML =
+    '<div class="awrap">'
+    +'<div class="acard" style="text-align:center">'
+    +'<div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:32px">'
+    + logoHTML()
+    +'<span class="fd" style="font-weight:800;font-size:18px"><span style="background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Lumera<\/span><\/span>'
+    +'<\/div>'
+    +'<h1 class="fd" style="font-weight:800;font-size:24px;margin-bottom:8px">'+(isDE?'Konto erstellen':'Create your account')+'<\/h1>'
+    +'<p style="font-size:14px;color:var(--t2);margin-bottom:32px">'+(isDE?'Starte kostenlos mit Lumera':'Start learning for free with Lumera')+'<\/p>'
+    +'<button id="clerkSignUpBtn" class="btn blg bpr bfw" style="margin-bottom:16px">'+(isDE?'Registrieren Ὠ0':t('cb')+' →')+'<\/button>'
+    +'<p style="font-size:13px;color:var(--t3)">'+(isDE?'Bereits ein Konto? ':'Already have an account? ')+'<span style="color:var(--blue);cursor:pointer" onclick="P(&quot;login&quot;)">'+(isDE?'Anmelden':'Sign in')+'<\/span><\/p>'
+    +'<\/div><\/div>';
+  document.getElementById('clerkSignUpBtn').onclick = function(){
+    if(window.__clerk){ window.__clerk.openSignUp(); }
+    else { alert(isDE?'Bitte Seite neu laden':'Please refresh the page'); }
+  };
 }
 
 
@@ -1396,11 +1393,11 @@ function clerkSignOut(){
 ========================================================= */
 async function initClerk(){
   try {
-    var clerk = new window.Clerk(window.CLERK_PUBLISHABLE_KEY);
-    await clerk.load();
-    window.__clerk = clerk;
+    // With data-clerk-publishable-key, window.Clerk is the instance (not constructor)
+    await window.Clerk.load();
+    window.__clerk = window.Clerk;
 
-    clerk.addListener(function(resources){
+    window.__clerk.addListener(function(resources){
       var user = resources.user;
       var wasAuthed = document.getElementById('app').classList.contains('authed');
       if(user && !wasAuthed){
@@ -1412,15 +1409,12 @@ async function initClerk(){
       }
     });
 
-    if(clerk.user){
+    if(window.__clerk.user){
       document.getElementById('app').classList.add('authed');
       P('dashboard');
-    } else {
-      P('landing');
     }
   } catch(e){
     console.warn('Clerk init error:', e);
-    P('landing');
   }
 }
 
