@@ -923,10 +923,8 @@ function RLS(){
     /* 02 VIDEO */
     +'<div id="lesS1" style="scroll-margin-top:88px">'
     +'<div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:10px">02 \u2014 '+t('step_labels')[1]+'<\/div>'
-    +'<div class="vid-box" style="margin-bottom:32px">'
-    +'<div class="vid-play">&#x25B6;<\/div>'
-    +'<div style="font-size:11px;color:var(--t3);font-family:monospace;text-align:center;padding:0 20px">INSERT VIDEO URL \u2192 set lesson.videoUrl<\/div>'
-    +'<div style="font-size:10px;color:var(--t3)">YouTube / Vimeo / Mux<\/div>'
+    +'<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;margin-bottom:32px;background:#000">'
+    +'<iframe src="https://www.youtube.com/embed/-y9vyLiUnmM" title="Why this app exists" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px"><\/iframe>'
     +'<\/div><\/div>'
 
     /* 03 NOTES */
