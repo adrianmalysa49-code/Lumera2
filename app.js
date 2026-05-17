@@ -1395,6 +1395,10 @@ async function initClerk(){
       if(r.user && ['landing','login','signup'].indexOf(CP)>=0){ P('dashboard'); }
       else if(!r.user && document.getElementById('app').classList.contains('authed')){ document.getElementById('app').classList.remove('authed'); P('landing'); }
     });
+    // Hide loading overlay now that Clerk has resolved
+    var loadingEl = document.getElementById('lumera-loading');
+    if(loadingEl) loadingEl.style.display = 'none';
+
     if(window.__clerk.user){
       document.getElementById('app').classList.add('authed');
       var tab = document.getElementById('admin-tab');
@@ -1402,9 +1406,17 @@ async function initClerk(){
         var emails = window.__clerk.user.emailAddresses ? window.__clerk.user.emailAddresses.map(function(e){return e.emailAddress;}) : [];
         tab.style.display = emails.indexOf('lumera0000@gmail.com') >= 0 ? 'flex' : 'none';
       }
-      P('dashboard');
+      P('dashboard'); // already logged in → go straight to dashboard
+    } else {
+      P('landing');   // not logged in → show landing page
     }
-  } catch(e){ console.warn('Clerk error',e); }
+  } catch(e){
+    console.warn('Clerk error',e);
+    // Clerk failed — still show the app
+    var loadingEl = document.getElementById('lumera-loading');
+    if(loadingEl) loadingEl.style.display = 'none';
+    P('landing');
+  }
 }
 
 /* ── Auth pages with Clerk overlay ── */
@@ -1438,9 +1450,7 @@ var _origRSG = typeof RSG === 'function' ? RSG : null;
 RLG = function(){ buildAuthPage('loginC', true); };
 RSG = function(){ buildAuthPage('signupC', false); };
 
-// Start Clerk in background
+// Start Clerk — it will call P('dashboard') or P('landing') once session is resolved
 if(window.__clerkScriptLoaded){ initClerk(); }
 else { window.__clerkInitFn = initClerk; }
 
-
-P('landing');
