@@ -48,6 +48,20 @@
 </script>
 </head>
 <body>
+
+<!-- Loading overlay shown while Clerk resolves the session -->
+<div id="lumera-loading" style="
+  position:fixed;inset:0;z-index:9999;
+  background:#0c0b1a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+">
+  <div style="display:flex;align-items:center;gap:10px">
+    <span style="font-size:22px;font-weight:800;background:linear-gradient(135deg,#c4b5fd,#9b7ff4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Sora',sans-serif">Lumera</span>
+  </div>
+  <div style="width:32px;height:32px;border:3px solid rgba(155,127,244,.2);border-top-color:#9b7ff4;border-radius:50%;animation:lspin 0.7s linear infinite"></div>
+  <style>@keyframes lspin{to{transform:rotate(360deg)}}</style>
+</div>
+
 <div id="app"><div class="bg-blob-a"></div><div class="bg-blob-b"></div>
   <div class="tb" id="TB">
     <div id="TBL" class="logo-row" onclick="P('landing')">
