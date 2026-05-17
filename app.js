@@ -1531,4 +1531,4 @@ RSG = function(){ buildAuthPage('signupC', false); };
 // Start Clerk in background
 if(window.__clerkScriptLoaded){ initClerk(); }
 else { window.__clerkInitFn = initClerk; }
-
+// updated
