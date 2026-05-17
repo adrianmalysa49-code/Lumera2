@@ -1529,14 +1529,17 @@ RLG = function(){ buildAuthPage('loginC', true); };
 RSG = function(){ buildAuthPage('signupC', false); };
 
 // Start Clerk in background
-function startApp(){
-  if(window.__clerkScriptLoaded){ initClerk(); }
-  else { window.__clerkInitFn = initClerk; }
+function hideLumLoading(){
+  var el = document.getElementById('lumera-loading');
+  if(el) el.style.display = 'none';
 }
 
-if(document.readyState === 'loading'){
-  document.addEventListener('DOMContentLoaded', startApp);
-} else {
-  startApp();
-}
+if(window.__clerkScriptLoaded){ initClerk(); }
+else { window.__clerkInitFn = initClerk; }
+
+// Fallback: if Clerk takes too long or fails, hide spinner after 5s
+setTimeout(function(){
+  hideLumLoading();
+  if(!window.__clerk) P('landing');
+}, 5000);
 
