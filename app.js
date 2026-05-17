@@ -1244,10 +1244,10 @@ function RPW(){
     +'<div style="padding:0 20px 16px;border-top:1px solid var(--line2);padding-top:14px">'+proFeatsHTML+'<\/div>'
     +'<div style="padding:0 20px 20px" id="pw-action-wrap">'
     +(IS_PREMIUM
-      ? '<button class="btn blg bfw" style="background:rgba(255,255,255,.08);color:var(--t1)" onclick="openCustomerPortal()">'+(L=\'de\'?\'Abo verwalten\':\'Manage subscription\')+' &#x2192;<\/button>'
-        +'<p style="text-align:center;font-size:11px;color:var(--grn);margin-top:10px">&#x2713; '+(L=\'de\'?\'Premium aktiv\':\'Premium active')+'<\/p>'
-      : '<button class="btn blg bgld bfw" onclick="startCheckout()">'+t(\'pw_cta\')+' &#x2192;<\/button>'
-        +'<p style=\"text-align:center;font-size:11px;color:var(--t3);margin-top:10px\">'+t(\'pw_cancel\')+\'<\/p>\'
+      ? '<button class="btn blg bfw" style="background:rgba(255,255,255,.08);color:var(--t1)" onclick="openCustomerPortal()">'+(L==='de'?'Abo verwalten':'Manage subscription')+' &#x2192;<\/button>'
+        +'<p style="text-align:center;font-size:11px;color:var(--grn);margin-top:10px">&#x2713; '+(L==='de'?'Premium aktiv':'Premium active')+'<\/p>'
+      : '<button class="btn blg bgld bfw" onclick="startCheckout()">'+t('pw_cta')+' &#x2192;<\/button>'
+        +'<p style="text-align:center;font-size:11px;color:var(--t3);margin-top:10px">'+t('pw_cancel')+'<\/p>'
     )
     +'<\/div><\/div>'
 
@@ -1531,4 +1531,4 @@ RSG = function(){ buildAuthPage('signupC', false); };
 // Start Clerk in background
 if(window.__clerkScriptLoaded){ initClerk(); }
 else { window.__clerkInitFn = initClerk; }
-// updated
+
