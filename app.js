@@ -1,3 +1,6 @@
+/* ── Subscription state (set after Clerk + Stripe check) ── */
+var IS_PREMIUM = false;
+
 /* =========================================================
    TRANSLATIONS  (all strings, no special chars in code)
 ========================================================= */
@@ -1239,9 +1242,13 @@ function RPW(){
     +'<div style="font-size:10px;font-weight:600;color:var(--grn);margin-top:2px">'+t('pw_save')+'<\/div>'
     +'<\/div><\/div>'
     +'<div style="padding:0 20px 16px;border-top:1px solid var(--line2);padding-top:14px">'+proFeatsHTML+'<\/div>'
-    +'<div style="padding:0 20px 20px">'
-    +'<button class="btn blg bgld bfw">'+t('pw_cta')+' &#x2192;<\/button>'
-    +'<p style="text-align:center;font-size:11px;color:var(--t3);margin-top:10px">'+t('pw_cancel')+'<\/p>'
+    +'<div style="padding:0 20px 20px" id="pw-action-wrap">'
+    +(IS_PREMIUM
+      ? '<button class="btn blg bfw" style="background:rgba(255,255,255,.08);color:var(--t1)" onclick="openCustomerPortal()">'+(L=\'de\'?\'Abo verwalten\':\'Manage subscription\')+' &#x2192;<\/button>'
+        +'<p style="text-align:center;font-size:11px;color:var(--grn);margin-top:10px">&#x2713; '+(L=\'de\'?\'Premium aktiv\':\'Premium active')+'<\/p>'
+      : '<button class="btn blg bgld bfw" onclick="startCheckout()">'+t(\'pw_cta\')+' &#x2192;<\/button>'
+        +'<p style=\"text-align:center;font-size:11px;color:var(--t3);margin-top:10px\">'+t(\'pw_cancel\')+\'<\/p>\'
+    )
     +'<\/div><\/div>'
 
     /* Comparison */
@@ -1382,6 +1389,70 @@ function clerkSignOut(){
   if(window.__clerk) window.__clerk.signOut().then(function(){ P('landing'); });
 }
 
+/* ── Stripe helpers ──────────────────────────────────────── */
+async function checkSubscription(clerkUserId){
+  try {
+    var res = await fetch('/api/check-subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clerkUserId: clerkUserId })
+    });
+    var data = await res.json();
+    IS_PREMIUM = data.isPremium === true;
+  } catch(e){
+    console.warn('Subscription check failed', e);
+    IS_PREMIUM = false;
+  }
+}
+
+async function startCheckout(){
+  if(!window.__clerk || !window.__clerk.user){ P('login'); return; }
+  var user  = window.__clerk.user;
+  var email = user.emailAddresses && user.emailAddresses[0] ? user.emailAddresses[0].emailAddress : '';
+  try {
+    var res  = await fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clerkUserId: user.id, email: email })
+    });
+    var data = await res.json();
+    if(data.url){ window.location.href = data.url; }
+    else { alert('Checkout error: ' + (data.error || 'unknown')); }
+  } catch(e){
+    alert('Could not start checkout. Please try again.');
+  }
+}
+
+async function openCustomerPortal(){
+  if(!window.__clerk || !window.__clerk.user) return;
+  try {
+    var res  = await fetch('/api/customer-portal', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clerkUserId: window.__clerk.user.id })
+    });
+    var data = await res.json();
+    if(data.url){ window.location.href = data.url; }
+    else { alert('Portal error: ' + (data.error || 'unknown')); }
+  } catch(e){
+    alert('Could not open billing portal. Please try again.');
+  }
+}
+
+/* Handle ?checkout=success / ?checkout=cancel after Stripe redirect */
+(function handleCheckoutReturn(){
+  var params = new URLSearchParams(window.location.search);
+  if(params.get('checkout') === 'success'){
+    // Clean URL and show success message after page loads
+    window.__checkoutSuccess = true;
+    history.replaceState({}, '', window.location.pathname);
+  }
+  if(params.get('checkout') === 'cancel'){
+    history.replaceState({}, '', window.location.pathname);
+  }
+})();
+
+/* ── Clerk init (with subscription check) ────────────────── */
 async function initClerk(){
   try {
     await window.Clerk.load();
@@ -1393,12 +1464,8 @@ async function initClerk(){
         tab.style.display = emails.indexOf('lumera0000@gmail.com') >= 0 ? 'flex' : 'none';
       }
       if(r.user && ['landing','login','signup'].indexOf(CP)>=0){ P('dashboard'); }
-      else if(!r.user && document.getElementById('app').classList.contains('authed')){ document.getElementById('app').classList.remove('authed'); P('landing'); }
+      else if(!r.user && document.getElementById('app').classList.contains('authed')){ document.getElementById('app').classList.remove('authed'); IS_PREMIUM=false; P('landing'); }
     });
-    // Hide loading overlay now that Clerk has resolved
-    var loadingEl = document.getElementById('lumera-loading');
-    if(loadingEl) loadingEl.style.display = 'none';
-
     if(window.__clerk.user){
       document.getElementById('app').classList.add('authed');
       var tab = document.getElementById('admin-tab');
@@ -1406,15 +1473,26 @@ async function initClerk(){
         var emails = window.__clerk.user.emailAddresses ? window.__clerk.user.emailAddresses.map(function(e){return e.emailAddress;}) : [];
         tab.style.display = emails.indexOf('lumera0000@gmail.com') >= 0 ? 'flex' : 'none';
       }
-      P('dashboard'); // already logged in → go straight to dashboard
+      // Check subscription before rendering dashboard
+      await checkSubscription(window.__clerk.user.id);
+      P('dashboard');
+      // Show success toast if returning from Stripe
+      if(window.__checkoutSuccess){
+        window.__checkoutSuccess = false;
+        IS_PREMIUM = true;
+        setTimeout(function(){
+          var toast = document.createElement('div');
+          toast.innerHTML = '&#x1F389; ' + (L==='de' ? 'Premium freigeschaltet! Willkommen.' : 'Premium unlocked! Welcome.');
+          toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#7c59f4,#9b7ff4);color:#fff;padding:14px 24px;border-radius:14px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 8px 32px rgba(124,89,244,.4)';
+          document.body.appendChild(toast);
+          setTimeout(function(){ toast.remove(); }, 4000);
+        }, 500);
+      }
     } else {
-      P('landing');   // not logged in → show landing page
+      P('landing');
     }
   } catch(e){
     console.warn('Clerk error',e);
-    // Clerk failed — still show the app
-    var loadingEl = document.getElementById('lumera-loading');
-    if(loadingEl) loadingEl.style.display = 'none';
     P('landing');
   }
 }
@@ -1450,7 +1528,7 @@ var _origRSG = typeof RSG === 'function' ? RSG : null;
 RLG = function(){ buildAuthPage('loginC', true); };
 RSG = function(){ buildAuthPage('signupC', false); };
 
-// Start Clerk — it will call P('dashboard') or P('landing') once session is resolved
+// Start Clerk in background
 if(window.__clerkScriptLoaded){ initClerk(); }
 else { window.__clerkInitFn = initClerk; }
 
