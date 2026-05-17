@@ -1529,6 +1529,14 @@ RLG = function(){ buildAuthPage('loginC', true); };
 RSG = function(){ buildAuthPage('signupC', false); };
 
 // Start Clerk in background
-if(window.__clerkScriptLoaded){ initClerk(); }
-else { window.__clerkInitFn = initClerk; }
+function startApp(){
+  if(window.__clerkScriptLoaded){ initClerk(); }
+  else { window.__clerkInitFn = initClerk; }
+}
+
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', startApp);
+} else {
+  startApp();
+}
 
